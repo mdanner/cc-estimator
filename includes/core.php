@@ -22,22 +22,22 @@ function cc_display_form()
 {
     $return_string = <<<EOS
 <form method="post" action="">
-    <h3>Current Infrastructure</h3>
+    <h3>Your current information technology environment</h3>
     <table>
         <tr>
             <td>Number of Users:</td>
             <td><input type="text" name="userCount"></td>
         </tr>
         <tr>
-            <td>Number of Servers:</td>
+            <td>Number of Servers in-house:</td>
             <td><input type="text" name="serverCount"></td>
         </tr>
         <tr>
-            <td>Average Age of Servers (years):</td>
+            <td>Average age of Servers (years):</td>
             <td><input type="text" name="avgServerAge"></td>
         </tr>
     </table>
-    <h3>Current Applications</h3>
+    <h3>Your current software applications</h3>
     <table>
         <tr>
             <td>Email:</td>
@@ -97,6 +97,7 @@ function cc_process_form()
     $return_string = <<<EOS
 <h3>Your potential savings is {$savings}%!</h3>
 <p><a href="contact">Contact us</a> for more information on how you can achieve these savings.</p>
+<p>This estimate is based on the following information:</p>
     <table>
         <tr>
             <td>Number of Users:</td>
