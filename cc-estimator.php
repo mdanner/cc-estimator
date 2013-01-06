@@ -17,9 +17,8 @@ define('CC_ESTIMATOR_DIR', plugin_dir_path(__FILE__));
 define('CC_ESTIMATOR_URL', plugin_dir_url(__FILE__));
 
 /**
- * Load files
- * 
- **/
+ * Actions to perform every time the plugin is loaded
+ */
 function cc_estimator_load(){
 		
     if(is_admin()) //load admin files only in admin
@@ -28,38 +27,40 @@ function cc_estimator_load(){
     require_once(CC_ESTIMATOR_DIR.'includes/core.php');
 }
 
+/**
+ * Actions to perform once on plugin activation
+ */
 function cc_estimator_activation() {
-    
-	//actions to perform once on plugin activation go here    
-    
 	
     //register uninstaller
     register_uninstall_hook(__FILE__, 'cc_estimator_uninstall');
 }
 
+/**
+ * Actions to perform once on plugin deactivation
+ */
 function cc_estimator_deactivation() {
     
 	// actions to perform once on plugin deactivation go here
 	    
 }
 
+/**
+ * Actions to perform once on plugin uninstall
+ */
 function cc_estimator_uninstall(){
     
-    //actions to perform once on plugin uninstall go here
+    // actions to perform once on plugin uninstall go here
+    // This routine should remove all traces of the plugin from the
+    // database and file system.
 	    
 }
 
-//function cc_run_estimator($atts) {
-//    // Implements shortcode: 'wp-estimator'
-//    extract(shortcode_atts(array('name' => null,), $atts));
-//    if ($name == null)
-//        $return_string = 'Hello World!<br />';        
-//    else
-//        $return_string = 'Hello '.$name.'!<br />';
-//    
-//    return $return_string;
-//}
-
+/**
+ * Implements shortcode: [cc-estimator]
+ * @param type $atts An array of parameters included with the shortcode, e.g., [cc-estimator foo="5"]
+ * @return type string The HTML to be inserted where the shortcode is specified on a page or post
+ */
 function cc_run_estimator($atts) {
     
 //    // Implements shortcode: 'wp-estimator'
@@ -77,19 +78,25 @@ function cc_run_estimator($atts) {
     return $return_string;
 }
 
+/**
+ * Registers with WordPress any shortcodes associated with this plugin
+ */
 function register_shortcodes(){
-    // Create a shortcode to say Hello World!
-   add_shortcode('cc-estimator', 'cc_run_estimator');
+    
+    // This is the shortcode used to insert the estimator on a WordPress page or post
+    add_shortcode('cc-estimator', 'cc_run_estimator');
 }
 
-// Main 
+/**
+ * This is the main routine call by WordPress
+ */
 cc_estimator_load();
 
-// Activation, Deactivation and Uninstall Functions
+// Register with WordPress the activation and deactivation hooks for this plugin
 register_activation_hook(__FILE__, 'cc_estimator_activation');
 register_deactivation_hook(__FILE__, 'cc_estimator_deactivation');
 
-// Add actions
+// Register with WordPress the shortcodes implemented by this plugin
 add_action( 'init', 'register_shortcodes');
 
 ?>

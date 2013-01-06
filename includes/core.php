@@ -2,12 +2,22 @@
 /**
  * Main functionality
  **/
+
+/**
+ * Returns true if the request being processed is a form POST
+ * 
+ * @return type boolean
+ */
 function cc_isPostBack()
 {
-//	return (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST') and (basename($_SERVER['HTTP_REFERER']) == $_SERVER['SCRIPT_NAME']);
-	return (strtoupper($_SERVER['REQUEST_METHOD']) == 'POST');
+	return (strtoupper($_SERVER['REQUEST_METHOD']) === 'POST');
 }
 
+/**
+ * Returns the HTML required to render the estimator form
+ * 
+ * @return type string
+ */
 function cc_display_form()
 {
     $return_string = <<<EOS
@@ -75,17 +85,18 @@ EOS;
     return $return_string;
 }
 
+/**
+ * Processes the form values supplied by the user and returns a report of the results
+ * 
+ * @return type string
+ */
 function cc_process_form()
 {
     //TODO process the data in the form
+    $savings = rand(25,75);
     $return_string = <<<EOS
-<h3>Your potential savings is 42%!</h3>
-<p><a href="contact">Contact us</a> for more information on how you can achieve these savings.<br>
-Phone: 09 889 2447<br>
-Email: <a href="mailto:cloudcandle@arrowrock.com&subject=Please contact me">cloudcandle@arrowrock.com</a><br>
-Or use our convenient <a href="contact">contact form</a>.
-</p>
-<p>This estimate is based on the following information:</p>
+<h3>Your potential savings is {$savings}%!</h3>
+<p><a href="contact">Contact us</a> for more information on how you can achieve these savings.</p>
     <table>
         <tr>
             <td>Number of Users:</td>
@@ -119,9 +130,6 @@ Or use our convenient <a href="contact">contact form</a>.
             <td>{$_POST["appBackup"]}</td>
         </tr>
     </table>
-//<script>
-//    document.write('<p><a href="' + document.referrer + '">Edit my calculator settings</a></p>');
-//</script>
 <p>Click your browser's <strong>Back</strong> button to change your settings and recalculate your savings.</p>
 EOS;
     
