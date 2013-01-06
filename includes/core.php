@@ -95,7 +95,7 @@ function cc_process_form()
     //TODO process the data in the form
     $savings = rand(25,75);
     $return_string = <<<EOS
-<h3>Your potential savings is {$savings}%!</h3>
+<h3>Your potential IT cost savings is {$savings}%!</h3>
 <p><a href="contact">Contact us</a> for more information on how you can achieve these savings.</p>
 <p>This estimate is based on the following information:</p>
     <table>
